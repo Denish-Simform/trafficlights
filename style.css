@@ -1,0 +1,60 @@
+.verticle {
+    border: 2px solid black;
+    width: 50px;
+    height: 200px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.horizontal {
+    border: 2px solid black;
+    height: 50px;
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.horizontal-r {
+    flex-flow: row-reverse;
+}
+
+.verticle-b {
+    flex-flow: column-reverse;
+}
+
+.light-wrap-y {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.light-wrap-x {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.red {
+    background-color: red;
+    height: 45px;
+    border-radius: 50%;
+    width: 45px;
+     
+}
+
+.yellow {
+    background-color: yellow;
+    height: 45px;
+    border-radius: 50%;
+     
+    width: 45px;
+}
+
+.green {
+    background-color: green;
+    height: 45px;
+    border-radius: 50%;
+     
+    width: 45px;
+}
