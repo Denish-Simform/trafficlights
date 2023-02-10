@@ -6,19 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trafic Lights</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
-        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="style.css">
     <script src="traffic.js"></script>
 </head>
@@ -26,36 +13,40 @@
 <body>
     <div class="container">
         <div class="light-wrap-y">
-            <div id="timer-top"></div>
-            <div class="light verticle">
-                <div class="red"></div>
-                <div class="yellow"></div>
-                <div class="green"></div>
-            </div>           
+            <div class="light-wrap-col">
+                <div id="timer-top"></div>
+                <div class="light verticle">
+                    <div class="red top-red" id="top-red"></div>
+                    <div class="yellow top-yellow" id="top-yellow"></div>
+                    <div class="green " id="top-green"></div>
+                </div>
+            </div>
         </div>
         <div class="light-wrap-x">
             <div id="timer-left"></div>
             <div class="light horizontal">
-                <div class="red"></div>
-                <div class="yellow"></div>
-                <div class="green"></div>
+                <div class="red left-red" id="left-red"></div>
+                <div class="yellow left-yellow" id="left-yellow"></div>
+                <div class="green left-green" id="left-green"></div>
             </div>
-            
+
             <div class="light horizontal horizontal-r">
-                <div class="red"></div>
-                <div class="yellow"></div>
-                <div class="green"></div>
-            </div> 
+                <div class="red right-red" id="right-red"></div>
+                <div class="yellow right-yellow" id="right-yellow"></div>
+                <div class="green right-green" id="right-green"></div>
+            </div>
             <div id="timer-right"></div>
         </div>
         <div class="light-wrap-y">
-            <div class="light verticle verticle-b">
-                <div class="red"></div>
-                <div class="yellow"></div>
-                <div class="green"></div>
-            </div>  
-            <div id="timer-bottom"></div>
-        </div>    
+            <div class="light-wrap-col">
+                <div class="light verticle verticle-b">
+                    <div class="red bottom-red" id="bottom-red"></div>
+                    <div class="yellow bottom-yellow" id="bottom-yellow"></div>
+                    <div class="green bottom-green" id="bottom-green"></div>
+                </div>
+                <div id="timer-bottom"></div>
+            </div>
+        </div>
     </div>
 </body>
 
