@@ -1,168 +1,176 @@
+// var flag = 1;
+// var flag_timer;
+// let mypromise = new Promise(function (resolve,reject){
+//     flag_timer = setTimeout(function (){
+//         flag ++;
+//         resolve(flag);
+//     },20000)
+// })
+
+// mypromise.then(function (flag) {
+//         if(flag % 4 == 1) {
+//             go_right();
+//             flag_timer();
+//         } else if(flag % 4 == 2) {
+//             go_bottom();
+//             flag_timer();
+//         } else if(flag % 4 == 3) {
+//             go_left();
+//             flag_timer();
+//         } else {
+//             go_top();
+//             flag_timer();
+//         }
+//     }    
+// )
 // let time_right = 20; 
 // let time_left  = 20+time_right; 
 // let time_top = 20 + time_left;
 // let time_bottom = 20 + time_top;
+// var top_timer = document.getElementById('timer-top');
+// var right_timer = document.getElementById('timer-right');
+// var bottom_timer = document.getElementById('timer-bottom');
+// var left_timer = document.getElementById('timer-left');
+var go_timer, go_time = 20, total_time = 79;
 
-let top_timer = document.getElementById('timer_top');
-let right_timer = document.getElementById('timer_right');
-let bottom_timer = document.getElementById('timer_bottom');
-let left_timer = document.getElementById('timer_left');
-
-var GoTimer_top = function (timeleft) {
-    let go_timer = setInterval(function(){
-        if(timeleft == -1){
-            clearInterval(go_timer);
-            StopTimer_top(79);
-        } else if (timeleft <= 4) {   
-            document.getElementById('timer-top').style.color = 'red';
-            document.getElementById('top-yellow').style.opacity = '100%';
-            document.getElementById('top-green').style.opacity = '20%';
-            document.getElementById('top-red').style.opacity = '20%';
-            document.getElementById('timer-top').innerHTML = timeleft;
-        } else {
-            document.getElementById('timer-top').innerHTML = timeleft;
-            document.getElementById('timer-top').style.color = 'green';
-            document.getElementById('top-green').style.opacity = '100%';
-            document.getElementById('top-red').style.opacity = '20%';
-            document.getElementById('top-yellow').style.opacity = '20%';
+let go = function(time) {
+    go_timer = setInterval(function (){
+        if(time == 0) {
+            time = total_time;
         }
-        timeleft -= 1;
-    }, 1000);
+        position_timer(time,'top');
+        position_timer(time-20,'left');
+        position_timer(time-40,'bottom');
+        position_timer(time-60,'right');
+        time --;
+    },1000)
 }
 
-var StopTimer_top = function (timeleft) {
-    let stop_timer = setInterval(function(){
-        if(timeleft <= 0){
-            clearInterval(stop_timer);
-            GoTimer_top(19);
-        } else if (timeleft >= 0){
-            // return timeleft;
-            document.getElementById('top-red').style.opacity = '100%';
-            document.getElementById('timer-top').innerHTML = timeleft;
-            document.getElementById('top-yellow').style.opacity = '20%';
-            document.getElementById('top-green').style.opacity = '20%';
-        }
-        timeleft -= 1;
-        }, 1000);
+go(total_time);
+
+function position_timer (time,position) {
+    let flag;
+    // let top = 'top';
+    let position1 = position;
+    if (time < 0) {
+        time = 80 + time;
+        flag = 0;
+        light_logic(time,position1,flag);
+        document.getElementById('timer-'+position1).innerText = time;
+    } else if (time < 41 && time > 20) {
+        time = time - 20;
+        flag = 1;
+        light_logic(time,position1,flag);
+        document.getElementById('timer-'+position1).innerText = time;
+    } else {
+        flag = 0;
+        light_logic(time,position1,flag);
+        document.getElementById('timer-'+position1).innerText = time; //80
+    }
 }
 
-// right
-var GoTimer_right = function (timeleft) {
-    let go_timer = setInterval(function(){
-        if(timeleft == -1){
-            clearInterval(go_timer);
-            StopTimer_right(79);
-        } else if (timeleft <= 4) {   
-            document.getElementById('timer-right').style.color = 'red';
-            document.getElementById('right-yellow').style.opacity = '100%';
-            document.getElementById('right-green').style.opacity = '20%';
-            document.getElementById('timer-right').innerHTML = timeleft;
-        } else {
-            document.getElementById('timer-right').innerHTML = timeleft;
-            document.getElementById('timer-right').style.color = 'green';
-            document.getElementById('right-green').style.opacity = '100%';
-            document.getElementById('right-red').style.opacity = '20%';
-            document.getElementById('right-yellow').style.opacity = '20%';
-        }
-        timeleft -= 1;
-    }, 1000);
-}
+// function top_timer(time) {
+//     let flag;
+//     let top = 'top';
+//     if (time < 0) {
+//         time = 80 + time;
+//         flag = 0;
+//         light_logic(time,top,flag);
+//         document.getElementById('timer-top').innerText = time;
+//     } else if (time < 41 && time > 20) {
+//         time = time - 20;
+//         flag = 1;
+//         light_logic(time,top,flag);
+//         document.getElementById('timer-top').innerText = time;
+//     } else {
+//         flag = 0;
+//         light_logic(time,top,flag);
+//         document.getElementById('timer-top').innerText = time; //80
+//     } 
+// }
 
-var StopTimer_right = function (timeleft) {
-    let stop_timer = setInterval(function(){
-        if(timeleft <= 0){
-            clearInterval(stop_timer);
-            GoTimer_right(19);
-        } else if (timeleft >= 0){
-            // return timeleft;
-            document.getElementById('right-red').style.opacity = '100%';
-            document.getElementById('timer-right').innerHTML = timeleft;
-            document.getElementById('right-yellow').style.opacity = '20%';
-            document.getElementById('right-green').style.opacity = '20%';
-        }
-        timeleft -= 1;
-        }, 1000);
-}
+// function left_timer(time) {
+//     let flag;
+//     let left = 'left';
+//     if (time < 0) {
+//         time = 80 + time;
+//         flag = 0;
+//         light_logic(time,left,flag);
+//         document.getElementById('timer-left').innerText = time;
+//     } else if (time < 41 && time > 20) {
+//         time = time - 20;
+//         flag = 1;
+//         light_logic(time,left,flag);
+//         document.getElementById('timer-left').innerText = time;
+//     } else {
+//         flag = 0;
+//         light_logic(time,left,flag);
+//         document.getElementById('timer-left').innerText = time; //60
+//     }
+// }
 
-// bottom
-var GoTimer_bottom = function (timeleft) {
-    let go_timer = setInterval(function(){
-        if(timeleft == -1){
-            clearInterval(go_timer);
-            StopTimer_bottom(79);
-        }  else if (timeleft <= 4) {   
-            document.getElementById('timer-bottom').style.color = 'red';
-            document.getElementById('bottom-yellow').style.opacity = '100%';
-            document.getElementById('bottom-red').style.opacity = '20%';
-            document.getElementById('bottom-green').style.opacity = '20%';
-            document.getElementById('timer-bottom').innerHTML = timeleft;
-        } else {
-            document.getElementById('timer-bottom').innerHTML = timeleft;
-            document.getElementById('timer-bottom').style.color = 'green';
-            document.getElementById('bottom-green').style.opacity = '100%';
-            document.getElementById('bottom-red').style.opacity = '20%';
-            document.getElementById('bottom-yellow').style.opacity = '20%';
-        }
-        timeleft -= 1;
-    }, 1000);
-}
+// function bottom_timer(time) {
+//     let flag;
+//     let bottom = 'bottom';
+//     if (time < 0) {
+//         time = 80 + time;
+//         flag = 0;
+//         light_logic(time,bottom,flag);
+//         document.getElementById('timer-bottom').innerText = time;
+//     } else if (time < 41 && time > 20) {
+//         time = time - 20;
+//         flag = 1;
+//         light_logic(time,bottom,flag);
+//         document.getElementById('timer-bottom').innerText = time;
+//     } else {
+//         flag = 0;
+//         light_logic(time,bottom,flag);
+//         document.getElementById('timer-bottom').innerText = time; //40
+//     }
+// }
 
-var StopTimer_bottom = function (timeleft) {
-    let stop_timer = setInterval(function(){
-        if(timeleft <= 0){
-            clearInterval(stop_timer);
-            GoTimer_bottom(19);
-        } else if (timeleft >= 0){
-            // return timeleft;
-            document.getElementById('bottom-red').style.opacity = '100%';
-            document.getElementById('timer-bottom').innerHTML = timeleft;
-            document.getElementById('bottom-yellow').style.opacity = '20%';
-            document.getElementById('bottom-green').style.opacity = '20%';
-        }
-        timeleft -= 1;
-        }, 1000);
-}
+// function right_timer(time) {
+//     let right = 'right';
+//     let flag;
+//     if (time < 0) {
+//         time = 80 + time;
+//         console.log(time);
+//         flag = 0;
+//         light_logic(time,right,flag);
+//         document.getElementById('timer-right').innerText = time; 
+//     } else if (time < 41 && time > 20) {
+//         time = time - 20;
+//         flag = 1;
+//         light_logic(time,right,flag);
+//         document.getElementById('timer-right').innerText = time;
+//     } else {
+//         flag = 0;
+//         light_logic(time,right,flag);
+//         document.getElementById('timer-right').innerText = time; //20
+//     }
+// }
 
-// left
-var GoTimer_left = function (timeleft) {
-    let go_timer = setInterval(function(){
-        if(timeleft == -1){
-            clearInterval(go_timer);
-            StopTimer_left(79);
-        }  else if (timeleft <= 4) {   
-            document.getElementById('timer-left').style.color = 'red';
-            document.getElementById('left-yellow').style.opacity = '100%';
-            document.getElementById('left-green').style.opacity = '20%';
-            document.getElementById('left-red').style.opacity = '20%';
-            document.getElementById('timer-left').innerHTML = timeleft;
-        } else {
-            document.getElementById('timer-left').innerHTML = timeleft;
-            document.getElementById('timer-left').style.color = 'green';
-            document.getElementById('left-green').style.opacity = '100%';
-            document.getElementById('left-red').style.opacity = '20%';
-            document.getElementById('left-green').style.opacity = '20%';
-        }
-        timeleft -= 1;
-    }, 1000);
+function light_logic(time,position,flag) {
+    if (time > 0 && time < 5 && flag == 0) {
+        document.getElementById(position+"-yellow").style.backgroundColor = 'yellow';
+        document.getElementById(position+"-green").style.backgroundColor = 'black';
+        document.getElementById(position+"-red").style.backgroundColor = 'black';
+    } else if(time < 21 && time > 4 && flag == 0) {
+        document.getElementById(position+"-green").style.backgroundColor = 'green';
+        document.getElementById(position+"-yellow").style.backgroundColor = 'black';
+        document.getElementById(position+"-red").style.backgroundColor = 'black';
+    } else if(time < 21 && time > 4 && flag == 1) {
+        document.getElementById(position+"-green").style.backgroundColor = 'black';
+        document.getElementById(position+"-yellow").style.backgroundColor = 'black';
+        document.getElementById(position+"-red").style.backgroundColor = 'red';
+    } else {
+        document.getElementById(position+"-red").style.backgroundColor = 'red';
+        document.getElementById(position+"-yellow").style.backgroundColor = 'black';
+        document.getElementById(position+"-green").style.backgroundColor = 'black';
+    }
 }
+// setTimeout(function (){
+//     clearInterval(go_timer);
+//     go(total_time);
+// },20000)  
 
-var StopTimer_left = function (timeleft) {
-    let stop_timer = setInterval(function(){
-        if(timeleft <= 0){
-            clearInterval(stop_timer);
-            GoTimer_left(19);
-        } else if (timeleft >= 0){
-            // return timeleft;
-            document.getElementById('left-red').style.opacity = '100%';
-            document.getElementById('timer-left').innerHTML = timeleft;
-            document.getElementById('left-yellow').style.opacity = '20%';
-            document.getElementById('left-green').style.opacity = '20%';
-        }
-        timeleft -= 1;
-        }, 1000);
-}
-
-GoTimer_top(19);
-StopTimer_right(19);
-StopTimer_bottom(40);
-StopTimer_left(60);
