@@ -49,27 +49,10 @@
     font-weight: bolder;
 }
 
-.red {
-    background-color: red;
+.red, .yellow, .green {
+    background-color: black;
     height: 45px;
     border-radius: 50%;
-    opacity: 20%;
-    width: 45px;
-     
-}
-
-.yellow {
-    background-color: yellow;
-    height: 45px;
-    border-radius: 50%;
-    opacity: 20%; 
-    width: 45px;
-}
-
-.green {
-    background-color: green;
-    height: 45px;
-    border-radius: 50%;
-    opacity: 20%; 
+    opacity: 1;
     width: 45px;
 }
