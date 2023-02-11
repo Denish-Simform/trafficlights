@@ -1,4 +1,3 @@
-
 var global_timer, total_time = 79;
 
 let global = function(time) {
@@ -13,8 +12,6 @@ let global = function(time) {
         time --;
     },1000)
 }
-
-global(total_time);
 
 function position_timer (time,position) {
     let flag;
@@ -63,3 +60,4 @@ function light_logic(time,position,flag) {
     }
 } 
 
+global(total_time);
